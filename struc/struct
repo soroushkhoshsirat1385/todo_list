@@ -1,0 +1,32 @@
+Table 1 : users 
+username varchar(255) 
+password varchar(255) 
+email varchar(255) 
+firstname varchar(255)
+lastname varchar(255) 
+ID INT PRIMARY_KEY auto_increment
+AD varchar(255) #additional data 
+
+Table 2 : tasks 
+Task_ID INT PRIMARY_KEY auto_increment
+User_ID INT FOREIGN_KEY REFERENCES users(ID)
+Task_name varchar(255) 
+Task_description varchar(255) #additional data 
+Task_status INT # 1:not started , 2:in progress , 3:over due , 4:completed in time , 5:completed over due , 6:cancelled
+Task_deadline date 
+Task_created_at date 
+Task_updated_at date 
+
+Table 3 : logs 
+Log_ID INT PRIMARY_KEY auto_increment 
+log_description varchar(255) 
+log_created_at date 
+log_updated_at date 
+log_type INT # 1:server_log , 2:database_log , 3:application_log , 4:user_activity 
+
+Table 4 : notifications 
+notifications_ID INT PRIMARY_KEY auto_increment 
+Task_ID INT FOREIGN_KEY REFERENCES tasks(Task_ID) 
+User_ID INT FOREIGN_KEY REFERENCES users(ID)
+notifications_type INT # 1:task_created , 2:task_updated , 3:task_deleted , 4:task_completed ,5:task_started , 6:task_overdue , 7:task_cancelled
+notifications_send_at date 
